@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wanano.github.io/"/>
-  <updated>2016-05-09T10:42:10.713Z</updated>
+  <updated>2016-05-15T13:58:49.946Z</updated>
   <id>http://wanano.github.io/</id>
   
   <author>
@@ -16,11 +16,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>hexo3.2.0搭建静态博客指南与心得</title>
+    <link href="http://wanano.github.io/2016/05/12/hexo3-2-0%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97%E4%B8%8E%E5%BF%83%E5%BE%97/"/>
+    <id>http://wanano.github.io/2016/05/12/hexo3-2-0搭建静态博客指南与心得/</id>
+    <published>2016-05-12T07:51:12.000Z</published>
+    <updated>2016-05-15T13:58:49.946Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。&lt;/strong&gt;&lt;br&gt;我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;背景介绍&quot;&gt;&lt;a href=&quot;#背景介绍&quot; class=&quot;headerlink&quot; title=&quot;背景介绍&quot;&gt;&lt;/a&gt;背景介绍&lt;/h3&gt;&lt;p&gt;之前看到一个师兄写的博客，不同于之前一些著名网站的博客，感觉很厉害很有技术性，于是自己想尝试下自己能不能试着搭一个出来。有了目标便开始进行前期的准备工作，下载并学习git，去学习了一点HMTL和CSS的知识，最开始想用Jekyll搭建，但是发现网上的教程比较复杂，而且尝试了下自己确实没搞太懂（现在搞懂了点），于是转换思路，去知乎一搜，发现大神都推荐用hexo，适合于小白，于是自己决定采用这个方案（放弃前者的主要原因还是自己什么都不懂啊，哭哭~！），果不其然，网上教程比较详细，自己也大致的搞懂了一些，于是有了现在这个样子，当然还有待后期的加工和优化，以后自己会多“折腾”！ &lt;/p&gt;
+&lt;h3 id=&quot;hexo介绍&quot;&gt;&lt;a href=&quot;#hexo介绍&quot; class=&quot;headerlink&quot; title=&quot;hexo介绍&quot;&gt;&lt;/a&gt;hexo介绍&lt;/h3&gt;&lt;p&gt;hexo是一个基于node.js的静态博客程序，可以很方便的生成静态托管页面在github page上，作者是台湾的一个大学生&lt;a href=&quot;https://github.com/hexojs/hexo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;tommy351&lt;/a&gt;，搭建静态博客有很多方法，最开始我在知乎上搜寻，有jekyll，hexo，WordPress等等，出于好奇，我还去各自搜寻了一下，但当技术小白的我看完一些博客之后，我的内心是崩溃的啊，需要各种知识有木有啊！&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2Fhexo%E6%90%AD%E5%BB%BAblog%2Fhexo%E6%90%AD%E5%BB%BAblog1.jpg&quot; alt=&quot;宝宝委屈&quot;&gt;&lt;br&gt;hexo有以下一些优势：&lt;br&gt;1.生成静态页面&lt;br&gt;2.支持markdown（虽然我之前并不懂这是什么，百度到是一种可以使用普通文本器编写的标记语言）&lt;br&gt;3.兼容Windows，Mac&amp;amp;Linux&lt;br&gt;4.部署方便。命令很少而且很好理解。&lt;br&gt;5.高扩展性、自订性、可玩性较高。&lt;/p&gt;
+&lt;h3 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h3&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。&lt;/strong&gt;&lt;br&gt;我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="-学习 -随笔" scheme="http://wanano.github.io/categories/%E5%AD%A6%E4%B9%A0-%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="-Study -hexo3" scheme="http://wanano.github.io/tags/Study-hexo3/"/>
+    
+  </entry>
+  
+  <entry>
     <title>你好，卡比巴拉的海</title>
     <link href="http://wanano.github.io/2016/04/29/%E4%BD%A0%E5%A5%BD%EF%BC%8C%E5%8D%A1%E6%AF%94%E5%B7%B4%E6%8B%89%E7%9A%84%E6%B5%B7/"/>
     <id>http://wanano.github.io/2016/04/29/你好，卡比巴拉的海/</id>
     <published>2016-04-29T08:15:47.000Z</published>
-    <updated>2016-05-09T10:42:10.713Z</updated>
+    <updated>2016-05-12T08:02:58.414Z</updated>
     
     <content type="html">&lt;p&gt;   Hello! 这是我的博客。&lt;br&gt;   &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;   欢迎大家，这是我第一次正式写博客啊，还请大家多多指教，也希望自己能够不断进步，嘻嘻！&lt;/p&gt;
 </content>
