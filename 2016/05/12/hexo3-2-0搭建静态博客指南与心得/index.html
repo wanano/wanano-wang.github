@@ -89,7 +89,8 @@
 <meta property="og:site_name" content="卡比巴拉的海">
 <meta property="og:description" content="注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。">
 <meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2Fhexo%E6%90%AD%E5%BB%BAblog%2Fhexo%E6%90%AD%E5%BB%BAblog1.jpg">
-<meta property="og:updated_time" content="2016-05-15T13:58:49.946Z">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2Fhexo%E6%90%AD%E5%BB%BAblog%2Fhexo%E6%90%AD%E5%BB%BAblog2.jpg">
+<meta property="og:updated_time" content="2016-05-16T05:13:11.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo3.2.0搭建静态博客指南与心得">
 <meta name="twitter:description" content="注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。">
@@ -301,8 +302,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/学习-随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">-学习 -随笔</span>
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">-学习</span>
                   </a>
                 </span>
 
@@ -343,8 +344,18 @@
       
         <p><strong>注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。</strong><br>我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。<br><a id="more"></a></p>
 <h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>之前看到一个师兄写的博客，不同于之前一些著名网站的博客，感觉很厉害很有技术性，于是自己想尝试下自己能不能试着搭一个出来。有了目标便开始进行前期的准备工作，下载并学习git，去学习了一点HMTL和CSS的知识，最开始想用Jekyll搭建，但是发现网上的教程比较复杂，而且尝试了下自己确实没搞太懂（现在搞懂了点），于是转换思路，去知乎一搜，发现大神都推荐用hexo，适合于小白，于是自己决定采用这个方案（放弃前者的主要原因还是自己什么都不懂啊，哭哭~！），果不其然，网上教程比较详细，自己也大致的搞懂了一些，于是有了现在这个样子，当然还有待后期的加工和优化，以后自己会多“折腾”！ </p>
-<h3 id="hexo介绍"><a href="#hexo介绍" class="headerlink" title="hexo介绍"></a>hexo介绍</h3><p>hexo是一个基于node.js的静态博客程序，可以很方便的生成静态托管页面在github page上，作者是台湾的一个大学生<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">tommy351</a>，搭建静态博客有很多方法，最开始我在知乎上搜寻，有jekyll，hexo，WordPress等等，出于好奇，我还去各自搜寻了一下，但当技术小白的我看完一些博客之后，我的内心是崩溃的啊，需要各种知识有木有啊！<br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2Fhexo%E6%90%AD%E5%BB%BAblog%2Fhexo%E6%90%AD%E5%BB%BAblog1.jpg" alt="宝宝委屈"><br>hexo有以下一些优势：<br>1.生成静态页面<br>2.支持markdown（虽然我之前并不懂这是什么，百度到是一种可以使用普通文本器编写的标记语言）<br>3.兼容Windows，Mac&amp;Linux<br>4.部署方便。命令很少而且很好理解。<br>5.高扩展性、自订性、可玩性较高。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3>
+<h3 id="hexo介绍"><a href="#hexo介绍" class="headerlink" title="hexo介绍"></a>hexo介绍</h3><p>hexo是一个基于node.js的静态博客程序，可以很方便的生成静态托管页面在github page上，作者是台湾的一个大学生<a href="https://github.com/hexojs/hexo" target="_blank" rel="external">tommy351</a>, 搭建静态博客有很多方法，最开始我在知乎上搜寻，有jekyll，hexo，WordPress等等，出于好奇，我还去各自搜寻了一下，但当技术小白的我看完一些博客之后，我的内心是崩溃的啊，需要各种知识有木有啊！本着由简到难的原则，于是选择hexo的方法<br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2Fhexo%E6%90%AD%E5%BB%BAblog%2Fhexo%E6%90%AD%E5%BB%BAblog1.jpg" alt="宝宝委屈"><br>hexo有以下一些优势：<br>1.生成静态页面<br>2.支持markdown（虽然我之前并不懂这是什么，百度到是一种可以使用普通文本器编写的标记语言）<br>3.兼容Windows，Mac&amp;Linux<br>4.部署方便。命令很少而且很好理解。<br>5.高扩展性、自订性、可玩性较高。</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1.安装git：网上教程有很多，基于Windows平台的一般推荐<a href="https://git-for-windows.github.io/" target="_blank" rel="external">msysgit</a>，不懂可以看廖雪峰老师的教程。</p>
+<p>2.安装node.js</p>
+<p>3.安装hexo：在git bash下运行命令 <strong>npm install -g hexo</strong> 即可，装完后可用命令 <strong>hexo -v</strong> 查看版本。</p>
+<p>4.创建一个hexo文件夹：该文件夹就是防止博客内容的文件夹，创建好后单击右键，选择git bash here，然后进入gitbash命令行，以后进行操作也都是以这种方式进入，执行命令 </p>
+<p><strong>hexo init</strong> </p>
+<p>然后hexo会自动生成要创建网站的所有文件。</p>
+<p>5.安装依赖包，执行命令</p>
+<p><strong>npm install</strong></p>
+<p>6.由于网站是要托管在github上，因此你必须要创建注册一个github账号，并且新建一个Repository，名字必须是你的 <strong>github名.github.io</strong> ,如我的就是 <strong>wanano.github.io</strong> 。</p>
+<p>这样一个初始化的hexo博客就算搭建好了，你可以运行 <strong>hexo s</strong> 命令在本地查看效果，输入命令后在浏览器输入网址 <strong><a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a></strong> 查看，效果如下图所示：<br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2Fhexo%E6%90%AD%E5%BB%BAblog%2Fhexo%E6%90%AD%E5%BB%BAblog2.jpg" alt=""></p>
+<h3 id="配置博客"><a href="#配置博客" class="headerlink" title="配置博客"></a>配置博客</h3>
       
     </div>
     
@@ -459,7 +470,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -542,7 +553,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo介绍"><span class="nav-number">2.</span> <span class="nav-text">hexo介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo介绍"><span class="nav-number">2.</span> <span class="nav-text">hexo介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置博客"><span class="nav-number">4.</span> <span class="nav-text">配置博客</span></a></li></ol></div>
             
           </div>
         </section>
