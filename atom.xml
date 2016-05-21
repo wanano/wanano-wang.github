@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wanano.github.io/"/>
-  <updated>2016-05-16T06:05:49.721Z</updated>
+  <updated>2016-05-21T04:30:40.299Z</updated>
   <id>http://wanano.github.io/</id>
   
   <author>
@@ -16,13 +16,53 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>论文总结--基于图的流行排序的显著性检测</title>
+    <link href="http://wanano.github.io/2016/05/21/%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93-%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B/"/>
+    <id>http://wanano.github.io/2016/05/21/论文总结-基于图的流行排序的显著性检测/</id>
+    <published>2016-05-21T01:44:18.000Z</published>
+    <updated>2016-05-21T04:30:40.299Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt; 最近详细的看的一篇显著性检测方面论文，现将一些自己的理解贴出来,如有错误望大家指正！&lt;/strong&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;基本信息&quot;&gt;&lt;a href=&quot;#基本信息&quot; class=&quot;headerlink&quot; title=&quot;基本信息&quot;&gt;&lt;/a&gt;基本信息&lt;/h3&gt;&lt;p&gt;这篇论文是2013年发表在CVPR（computer vision and pattern recognition）杂志上的一篇论文，十分经典，作者是大连理工大学的杨川，张力和，卢湖川等，我虽然对这方面的论文详细了解的不深，毕竟不是主要做这个的，但是特意去搜了下&lt;a href=&quot;http://ice.dlut.edu.cn/lu/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;卢湖川&lt;/a&gt;教授，此乃大牛教授也，并且挂他名的论文很多源码都贴在他的项目网站上，天地良心有木有！！中国很多的论文质量不高有时候就是因为经不起考验(也就是造假)，但像卢教授这样的敢于直接放出源码的真的太少了，致敬！学习！&lt;/p&gt;
+&lt;h3 id=&quot;背景介绍&quot;&gt;&lt;a href=&quot;#背景介绍&quot; class=&quot;headerlink&quot; title=&quot;背景介绍&quot;&gt;&lt;/a&gt;背景介绍&lt;/h3&gt;&lt;p&gt;人眼具备独特的视觉注意机制，它是指人眼能够有效的发现场景中最具有吸引的的重要区域。显著性检测的目的就是模拟这种机制，使计算机视觉也具备类似的能力。&lt;/p&gt;
+&lt;p&gt;显著性的方法可以划分为自底向上和自顶向下两大类，自底向上是指利用一部分的先验知识，然后最后得到最后的显著性检测结果。自上而下是指先给定最后的真实结果，然后来设计方法得到实际的显著性检测结果。从显著性的发展过程及最终的应用方向上考虑，又可分为视觉关注点预测和显著性目标检测两类，前者倾向与捕捉图像中最具吸引力的关键点，后者追求完整、均匀的突出整个目标。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 提出问题 &lt;/strong&gt;&lt;br&gt;大多数自底向上的显著性检测算法是居于局部或全局的对比度的，而很少使用图的分割来进行显著性检测，（我的理解就是将图像分为背景和前景来进行显著性检测），而很显然后者的方法是更加好的，更能突出前景目标，效果更好。&lt;br&gt;&lt;strong&gt; 本文方法 &lt;/strong&gt;&lt;br&gt;本文利用给定的背景线索，采用自底向上的方法，将流行排序应用于显著性检测，并且采用不同的方法对前景和前景选取显著性种子节点，然后进行流行排序，即两阶段过程，图中每个节点的显著程度通过其相对于种子节点的排序得分来度量，最后得到显著图。&lt;/p&gt;
+&lt;h3 id=&quot;算法思想&quot;&gt;&lt;a href=&quot;#算法思想&quot; class=&quot;headerlink&quot; title=&quot;算法思想&quot;&gt;&lt;/a&gt;算法思想&lt;/h3&gt;&lt;h4 id=&quot;算法流程图&quot;&gt;&lt;a href=&quot;#算法流程图&quot; class=&quot;headerlink&quot; title=&quot;算法流程图&quot;&gt;&lt;/a&gt;算法流程图&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg1.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;这个流程图写的比较详细，便不再赘述。&lt;/p&gt;
+&lt;h4 id=&quot;算法模型&quot;&gt;&lt;a href=&quot;#算法模型&quot; class=&quot;headerlink&quot; title=&quot;算法模型&quot;&gt;&lt;/a&gt;算法模型&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg2.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;这是论文原文中给出的算法模型图，根据图也很好理解，算法将显著性检测分为两阶段的过程，在第一阶段中，利用图像的边界先验知识，即假设图像的边界是背景区域，分别取上下左右四条边界的超像素点作为查询对象，然后进行排序，得到四幅显著性图，然后再将这四幅显著图相乘，这就是第一阶段最终的显著图，这一方法叫做SC方法（separation/combine），这样做的好处可以在于有时候显著性目标与某一边界显著性相邻，但是与其他边界区别很大，如果同时对四条边界进行流行排序得到显著图效果就不会很理想，相反，SC方法就可以很好的改善这一情况。之后再进行第二阶段的排序，第二阶段的查询对象时前景节点，利用自适应阈值分割得到，再进行流行排序就可以得到最终的显著图。&lt;/p&gt;
+&lt;h3 id=&quot;算法的具体实现&quot;&gt;&lt;a href=&quot;#算法的具体实现&quot; class=&quot;headerlink&quot; title=&quot;算法的具体实现&quot;&gt;&lt;/a&gt;算法的具体实现&lt;/h3&gt;&lt;h4 id=&quot;采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。&quot;&gt;&lt;a href=&quot;#采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。&quot; class=&quot;headerlink&quot; title=&quot;采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。&quot;&gt;&lt;/a&gt;采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。&lt;/h4&gt;&lt;p&gt;SLIC综合考虑像素间的颜色和距离的相似性，将彼此相邻且颜色接近的像素聚集为局部小区域，每个节点不仅和空间上的邻接的点相连，与该节点的邻接节点共享同一个超像素边界的节点也相连。&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;流行排序&quot;&gt;&lt;a href=&quot;#流行排序&quot; class=&quot;headerlink&quot; title=&quot;流行排序&quot;&gt;&lt;/a&gt;流行排序&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg4.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;第一阶段&quot;&gt;&lt;a href=&quot;#第一阶段&quot; class=&quot;headerlink&quot; title=&quot;第一阶段&quot;&gt;&lt;/a&gt;第一阶段&lt;/h4&gt;&lt;p&gt;第一阶段的过程的具体实现就是取背景种子节点作为查询对象进行流行排序，得到显著图，一个节点i相对于查询对象（上边界）的显著性用公式表示为：&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg5.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;这个很好理解，f表示节点和查询对象的相似度，因为查询对象是背景，所以最终得到显著性应该是与前景目标的相似度，所以要用1减去f。&lt;br&gt;之后第一阶段的显著图为四个边界的乘积，即：&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg6.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;第二阶段&quot;&gt;&lt;a href=&quot;#第二阶段&quot; class=&quot;headerlink&quot; title=&quot;第二阶段&quot;&gt;&lt;/a&gt;第二阶段&lt;/h4&gt;&lt;p&gt;在第一阶段的基础上，利用自适应阈值分割的方法分割第一阶段的显著图，得到前景种子节点，即第二阶段的查询对象，之后再进行流行排序，就可以得到第二阶段的显著图：&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg7.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;一般来说，显著性目标具有结构紧凑，外观特征均匀的特点，在实验中有时候我们选取前景种子节点时不够正确，但还是能够得到很好的实验结果，这是因为显著目标内节点的相关性往往远大于显著节点和其他节点的相关性。&lt;/p&gt;
+&lt;h3 id=&quot;实验结果&quot;&gt;&lt;a href=&quot;#实验结果&quot; class=&quot;headerlink&quot; title=&quot;实验结果&quot;&gt;&lt;/a&gt;实验结果&lt;/h3&gt;&lt;p&gt;实验结果分别在三个大型的数据集中进行了测试，并且与当前多种主流的顶尖的显著性检测算法进行了比较。实验的评价指标用了三个：准确率、查全率和F-特征，前两个比较好理解，第三个指标其实就是一个同时考虑查全率和准确率的一个综合性指标。实验结果如下：&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg8.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg9.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg10.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg11.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;文章中最后还进行了运行时间的比较，结果也是很好的。&lt;/p&gt;
+&lt;h3 id=&quot;总结与改进&quot;&gt;&lt;a href=&quot;#总结与改进&quot; class=&quot;headerlink&quot; title=&quot;总结与改进&quot;&gt;&lt;/a&gt;总结与改进&lt;/h3&gt;&lt;h4 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h4&gt;&lt;p&gt;本文提出的基于图的流行排序的显著性检测算法创新的将流行排序作为相似度度量的方式，并且分两阶段进行显著性的检测，实验结果显示具有非常优秀的实验效果，但是仍然存在着一些不足，当较大面积的显著性目标接触到图像边界时，算法效果不够理想，这是因为第一阶段时背景假设过于理想化，此外，在第二阶段的前景种子节点选取时，自适应的阈值分割方法有时会选择出错误的节点，虽然论文最终的实验结果很好，但这个方面仍有待改进。&lt;/p&gt;
+&lt;h4 id=&quot;改进&quot;&gt;&lt;a href=&quot;#改进&quot; class=&quot;headerlink&quot; title=&quot;改进&quot;&gt;&lt;/a&gt;改进&lt;/h4&gt;&lt;p&gt;1.在选取种子节点时，用一些聚类算法将边界进行分类（如GMM），然后将每一类的节点作为种子节点，得到显著图结果。&lt;br&gt;2.利用区域与边界的连通性计算属于背景节点的概率，据此赋予超像素节点不同的背景权重，从而改进前景节点的选取。&lt;br&gt;注：改进是本人的愚见，未经过验证，如有错误望包涵！当然也欢迎交流指正！&lt;/p&gt;
+&lt;h3 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Saliency Detection via Graph-Based Manifold Ranking&lt;/li&gt;
+&lt;li&gt;基于传播模型的显著性检测方法&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt; 最近详细的看的一篇显著性检测方面论文，现将一些自己的理解贴出来,如有错误望大家指正！&lt;/strong&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="图像处理" scheme="http://wanano.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="论文学习" scheme="http://wanano.github.io/tags/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo3.2.0搭建静态博客指南与心得</title>
     <link href="http://wanano.github.io/2016/05/12/hexo3-2-0%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97%E4%B8%8E%E5%BF%83%E5%BE%97/"/>
     <id>http://wanano.github.io/2016/05/12/hexo3-2-0搭建静态博客指南与心得/</id>
     <published>2016-05-12T07:51:12.000Z</published>
-    <updated>2016-05-16T06:05:49.721Z</updated>
+    <updated>2016-05-21T01:51:58.502Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;strong&gt;注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。&lt;/strong&gt;&lt;br&gt;我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt; &lt;strong&gt; 注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。&lt;/strong&gt;&lt;br&gt;我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;背景介绍&quot;&gt;&lt;a href=&quot;#背景介绍&quot; class=&quot;headerlink&quot; title=&quot;背景介绍&quot;&gt;&lt;/a&gt;背景介绍&lt;/h3&gt;&lt;p&gt;之前看到一个师兄写的博客，不同于之前一些著名网站的博客，感觉很厉害很有技术性，于是自己想尝试下自己能不能试着搭一个出来。有了目标便开始进行前期的准备工作，下载并学习git，去学习了一点HMTL和CSS的知识，最开始想用Jekyll搭建，但是发现网上的教程比较复杂，而且尝试了下自己确实没搞太懂（现在搞懂了点），于是转换思路，去知乎一搜，发现大神都推荐用hexo，适合于小白，于是自己决定采用这个方案（放弃前者的主要原因还是自己什么都不懂啊，哭哭~！），果不其然，网上教程比较详细，自己也大致的搞懂了一些，于是有了现在这个样子，当然还有待后期的加工和优化，以后自己会多“折腾”！ &lt;/p&gt;
 &lt;h3 id=&quot;hexo介绍&quot;&gt;&lt;a href=&quot;#hexo介绍&quot; class=&quot;headerlink&quot; title=&quot;hexo介绍&quot;&gt;&lt;/a&gt;hexo介绍&lt;/h3&gt;&lt;p&gt;hexo是一个基于node.js的静态博客程序，可以很方便的生成静态托管页面在github page上，作者是台湾的一个大学生&lt;a href=&quot;https://github.com/hexojs/hexo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;tommy351&lt;/a&gt;, 搭建静态博客有很多方法，最开始我在知乎上搜寻，有jekyll，hexo，WordPress等等，出于好奇，我还去各自搜寻了一下，但当技术小白的我看完一些博客之后，我的内心是崩溃的啊，需要各种知识有木有啊！本着由简到难的原则，于是选择hexo的方法&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2Fhexo%E6%90%AD%E5%BB%BAblog%2Fhexo%E6%90%AD%E5%BB%BAblog1.jpg&quot; alt=&quot;宝宝委屈&quot;&gt;&lt;br&gt;hexo有以下一些优势：&lt;br&gt;1.生成静态页面&lt;br&gt;2.支持markdown（虽然我之前并不懂这是什么，百度到是一种可以使用普通文本器编写的标记语言）&lt;br&gt;3.兼容Windows，Mac&amp;amp;Linux&lt;br&gt;4.部署方便。命令很少而且很好理解。&lt;br&gt;5.高扩展性、自订性、可玩性较高。&lt;/p&gt;
 &lt;h3 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h3&gt;&lt;p&gt;1.安装git：网上教程有很多，基于Windows平台的一般推荐&lt;a href=&quot;https://git-for-windows.github.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;msysgit&lt;/a&gt;，不懂可以看廖雪峰老师的教程。&lt;/p&gt;
@@ -39,7 +79,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。&lt;/strong&gt;&lt;br&gt;我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。&lt;br&gt;
+      &lt;p&gt; &lt;strong&gt; 注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。&lt;/strong&gt;&lt;br&gt;我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。&lt;br&gt;
     
     </summary>
     

@@ -1,0 +1,719 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="论文学习," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="卡比巴拉的海" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近详细的看的一篇显著性检测方面论文，现将一些自己的理解贴出来,如有错误望大家指正！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文总结--基于图的流行排序的显著性检测">
+<meta property="og:url" content="http://wanano.github.io/2016/05/21/论文总结-基于图的流行排序的显著性检测/index.html">
+<meta property="og:site_name" content="卡比巴拉的海">
+<meta property="og:description" content="最近详细的看的一篇显著性检测方面论文，现将一些自己的理解贴出来,如有错误望大家指正！">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg1.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg2.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg3.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg4.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg5.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg6.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg7.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg8.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg9.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg10.jpg">
+<meta property="og:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg11.jpg">
+<meta property="og:updated_time" content="2016-05-21T04:30:40.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文总结--基于图的流行排序的显著性检测">
+<meta name="twitter:description" content="最近详细的看的一篇显著性检测方面论文，现将一些自己的理解贴出来,如有错误望大家指正！">
+<meta name="twitter:image" content="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 论文总结--基于图的流行排序的显著性检测 | 卡比巴拉的海 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">卡比巴拉的海</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">wanano's homepage</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-something">
+          <a href="/Something" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            有料
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                论文总结--基于图的流行排序的显著性检测
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-21T09:44:18+08:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+		  
+		  
+           <span id="busuanzi_container_page_pv">&nbsp;&nbsp;|&nbsp;&nbsp;阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+          
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/图像处理/" itemprop="url" rel="index">
+                    <span itemprop="name">图像处理</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/21/论文总结-基于图的流行排序的显著性检测/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/21/论文总结-基于图的流行排序的显著性检测/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong> 最近详细的看的一篇显著性检测方面论文，现将一些自己的理解贴出来,如有错误望大家指正！</strong><br><a id="more"></a></p>
+<h3 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h3><p>这篇论文是2013年发表在CVPR（computer vision and pattern recognition）杂志上的一篇论文，十分经典，作者是大连理工大学的杨川，张力和，卢湖川等，我虽然对这方面的论文详细了解的不深，毕竟不是主要做这个的，但是特意去搜了下<a href="http://ice.dlut.edu.cn/lu/" target="_blank" rel="external">卢湖川</a>教授，此乃大牛教授也，并且挂他名的论文很多源码都贴在他的项目网站上，天地良心有木有！！中国很多的论文质量不高有时候就是因为经不起考验(也就是造假)，但像卢教授这样的敢于直接放出源码的真的太少了，致敬！学习！</p>
+<h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>人眼具备独特的视觉注意机制，它是指人眼能够有效的发现场景中最具有吸引的的重要区域。显著性检测的目的就是模拟这种机制，使计算机视觉也具备类似的能力。</p>
+<p>显著性的方法可以划分为自底向上和自顶向下两大类，自底向上是指利用一部分的先验知识，然后最后得到最后的显著性检测结果。自上而下是指先给定最后的真实结果，然后来设计方法得到实际的显著性检测结果。从显著性的发展过程及最终的应用方向上考虑，又可分为视觉关注点预测和显著性目标检测两类，前者倾向与捕捉图像中最具吸引力的关键点，后者追求完整、均匀的突出整个目标。</p>
+<p><strong> 提出问题 </strong><br>大多数自底向上的显著性检测算法是居于局部或全局的对比度的，而很少使用图的分割来进行显著性检测，（我的理解就是将图像分为背景和前景来进行显著性检测），而很显然后者的方法是更加好的，更能突出前景目标，效果更好。<br><strong> 本文方法 </strong><br>本文利用给定的背景线索，采用自底向上的方法，将流行排序应用于显著性检测，并且采用不同的方法对前景和前景选取显著性种子节点，然后进行流行排序，即两阶段过程，图中每个节点的显著程度通过其相对于种子节点的排序得分来度量，最后得到显著图。</p>
+<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><h4 id="算法流程图"><a href="#算法流程图" class="headerlink" title="算法流程图"></a>算法流程图</h4><p><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg1.jpg" alt=""><br>这个流程图写的比较详细，便不再赘述。</p>
+<h4 id="算法模型"><a href="#算法模型" class="headerlink" title="算法模型"></a>算法模型</h4><p><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg2.jpg" alt=""><br>这是论文原文中给出的算法模型图，根据图也很好理解，算法将显著性检测分为两阶段的过程，在第一阶段中，利用图像的边界先验知识，即假设图像的边界是背景区域，分别取上下左右四条边界的超像素点作为查询对象，然后进行排序，得到四幅显著性图，然后再将这四幅显著图相乘，这就是第一阶段最终的显著图，这一方法叫做SC方法（separation/combine），这样做的好处可以在于有时候显著性目标与某一边界显著性相邻，但是与其他边界区别很大，如果同时对四条边界进行流行排序得到显著图效果就不会很理想，相反，SC方法就可以很好的改善这一情况。之后再进行第二阶段的排序，第二阶段的查询对象时前景节点，利用自适应阈值分割得到，再进行流行排序就可以得到最终的显著图。</p>
+<h3 id="算法的具体实现"><a href="#算法的具体实现" class="headerlink" title="算法的具体实现"></a>算法的具体实现</h3><h4 id="采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。"><a href="#采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。" class="headerlink" title="采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。"></a>采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。</h4><p>SLIC综合考虑像素间的颜色和距离的相似性，将彼此相邻且颜色接近的像素聚集为局部小区域，每个节点不仅和空间上的邻接的点相连，与该节点的邻接节点共享同一个超像素边界的节点也相连。<br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg3.jpg" alt=""></p>
+<h4 id="流行排序"><a href="#流行排序" class="headerlink" title="流行排序"></a>流行排序</h4><p><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg4.jpg" alt=""></p>
+<h4 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h4><p>第一阶段的过程的具体实现就是取背景种子节点作为查询对象进行流行排序，得到显著图，一个节点i相对于查询对象（上边界）的显著性用公式表示为：<br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg5.jpg" alt=""><br>这个很好理解，f表示节点和查询对象的相似度，因为查询对象是背景，所以最终得到显著性应该是与前景目标的相似度，所以要用1减去f。<br>之后第一阶段的显著图为四个边界的乘积，即：<br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg6.jpg" alt=""></p>
+<h4 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h4><p>在第一阶段的基础上，利用自适应阈值分割的方法分割第一阶段的显著图，得到前景种子节点，即第二阶段的查询对象，之后再进行流行排序，就可以得到第二阶段的显著图：<br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg7.jpg" alt=""><br>一般来说，显著性目标具有结构紧凑，外观特征均匀的特点，在实验中有时候我们选取前景种子节点时不够正确，但还是能够得到很好的实验结果，这是因为显著目标内节点的相关性往往远大于显著节点和其他节点的相关性。</p>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>实验结果分别在三个大型的数据集中进行了测试，并且与当前多种主流的顶尖的显著性检测算法进行了比较。实验的评价指标用了三个：准确率、查全率和F-特征，前两个比较好理解，第三个指标其实就是一个同时考虑查全率和准确率的一个综合性指标。实验结果如下：<br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg8.jpg" alt=""><br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg9.jpg" alt=""><br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg10.jpg" alt=""><br><img src="http://o6wayjgzn.bkt.clouddn.com/img%2F%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%B5%81%E8%A1%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E6%B5%8B%2Fimg11.jpg" alt=""><br>文章中最后还进行了运行时间的比较，结果也是很好的。</p>
+<h3 id="总结与改进"><a href="#总结与改进" class="headerlink" title="总结与改进"></a>总结与改进</h3><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文提出的基于图的流行排序的显著性检测算法创新的将流行排序作为相似度度量的方式，并且分两阶段进行显著性的检测，实验结果显示具有非常优秀的实验效果，但是仍然存在着一些不足，当较大面积的显著性目标接触到图像边界时，算法效果不够理想，这是因为第一阶段时背景假设过于理想化，此外，在第二阶段的前景种子节点选取时，自适应的阈值分割方法有时会选择出错误的节点，虽然论文最终的实验结果很好，但这个方面仍有待改进。</p>
+<h4 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h4><p>1.在选取种子节点时，用一些聚类算法将边界进行分类（如GMM），然后将每一类的节点作为种子节点，得到显著图结果。<br>2.利用区域与边界的连通性计算属于背景节点的概率，据此赋予超像素节点不同的背景权重，从而改进前景节点的选取。<br>注：改进是本人的愚见，未经过验证，如有错误望包涵！当然也欢迎交流指正！</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li>Saliency Detection via Graph-Based Manifold Ranking</li>
+<li>基于传播模型的显著性检测方法</li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/论文学习/" rel="tag">#论文学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/12/hexo3-2-0搭建静态博客指南与心得/" rel="next" title="hexo3.2.0搭建静态博客指南与心得">
+                <i class="fa fa-chevron-left"></i> hexo3.2.0搭建静态博客指南与心得
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/21/论文总结-基于图的流行排序的显著性检测/"
+           data-title="论文总结--基于图的流行排序的显著性检测" data-url="http://wanano.github.io/2016/05/21/论文总结-基于图的流行排序的显著性检测/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/IMG_0821.JPG"
+               alt="wanano" />
+          <p class="site-author-name" itemprop="name">wanano</p>
+          <p class="site-description motion-element" itemprop="description">自古寻真皆寂寞，唯挑心灯伴夜霭</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wanano" target="_blank" title="github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/59861887/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xiao-xin-zai-bei-jing-xi" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本信息"><span class="nav-number">1.</span> <span class="nav-text">基本信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景介绍"><span class="nav-number">2.</span> <span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想"><span class="nav-number">3.</span> <span class="nav-text">算法思想</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法流程图"><span class="nav-number">3.1.</span> <span class="nav-text">算法流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法模型"><span class="nav-number">3.2.</span> <span class="nav-text">算法模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法的具体实现"><span class="nav-number">4.</span> <span class="nav-text">算法的具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。"><span class="nav-number">4.1.</span> <span class="nav-text">采用SLIC方法将图像分解为超像素表示，然后利用这些超像素点作为节点，构造K正则图。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流行排序"><span class="nav-number">4.2.</span> <span class="nav-text">流行排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一阶段"><span class="nav-number">4.3.</span> <span class="nav-text">第一阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二阶段"><span class="nav-number">4.4.</span> <span class="nav-text">第二阶段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验结果"><span class="nav-number">5.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结与改进"><span class="nav-number">6.</span> <span class="nav-text">总结与改进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">6.1.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#改进"><span class="nav-number">6.2.</span> <span class="nav-text">改进</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">7.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wanano</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wanano-notes"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
