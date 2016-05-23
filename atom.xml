@@ -60,7 +60,7 @@
     <link href="http://wanano.github.io/2016/05/12/hexo3-2-0%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97%E4%B8%8E%E5%BF%83%E5%BE%97/"/>
     <id>http://wanano.github.io/2016/05/12/hexo3-2-0搭建静态博客指南与心得/</id>
     <published>2016-05-12T07:51:12.000Z</published>
-    <updated>2016-05-21T01:51:58.502Z</updated>
+    <updated>2016-05-23T13:03:18.222Z</updated>
     
     <content type="html">&lt;p&gt; &lt;strong&gt; 注意，本文搭建博客的版本为hexo3.2.0，可能与其他版本略有出入。&lt;/strong&gt;&lt;br&gt;我是一个hexo小白，参考了网上很多的搭建方法，现在写写自己的搭建心得和方法，如有错误望各位指正。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;背景介绍&quot;&gt;&lt;a href=&quot;#背景介绍&quot; class=&quot;headerlink&quot; title=&quot;背景介绍&quot;&gt;&lt;/a&gt;背景介绍&lt;/h3&gt;&lt;p&gt;之前看到一个师兄写的博客，不同于之前一些著名网站的博客，感觉很厉害很有技术性，于是自己想尝试下自己能不能试着搭一个出来。有了目标便开始进行前期的准备工作，下载并学习git，去学习了一点HMTL和CSS的知识，最开始想用Jekyll搭建，但是发现网上的教程比较复杂，而且尝试了下自己确实没搞太懂（现在搞懂了点），于是转换思路，去知乎一搜，发现大神都推荐用hexo，适合于小白，于是自己决定采用这个方案（放弃前者的主要原因还是自己什么都不懂啊，哭哭~！），果不其然，网上教程比较详细，自己也大致的搞懂了一些，于是有了现在这个样子，当然还有待后期的加工和优化，以后自己会多“折腾”！ &lt;/p&gt;
@@ -75,7 +75,21 @@
 &lt;p&gt;&lt;strong&gt;npm install&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;6.由于网站是要托管在github上，因此你必须要创建注册一个github账号，并且新建一个Repository，名字必须是你的 &lt;strong&gt;github名.github.io&lt;/strong&gt; ,如我的就是 &lt;strong&gt;wanano.github.io&lt;/strong&gt; 。&lt;/p&gt;
 &lt;p&gt;这样一个初始化的hexo博客就算搭建好了，你可以运行 &lt;strong&gt;hexo s&lt;/strong&gt; 命令在本地查看效果，输入命令后在浏览器输入网址 &lt;strong&gt;&lt;a href=&quot;http://localhost:4000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:4000&lt;/a&gt;&lt;/strong&gt; 查看，效果如下图所示：&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2Fhexo%E6%90%AD%E5%BB%BAblog%2Fhexo%E6%90%AD%E5%BB%BAblog2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;配置博客&quot;&gt;&lt;a href=&quot;#配置博客&quot; class=&quot;headerlink&quot; title=&quot;配置博客&quot;&gt;&lt;/a&gt;配置博客&lt;/h3&gt;</content>
+&lt;h3 id=&quot;配置博客&quot;&gt;&lt;a href=&quot;#配置博客&quot; class=&quot;headerlink&quot; title=&quot;配置博客&quot;&gt;&lt;/a&gt;配置博客&lt;/h3&gt;&lt;p&gt;之前的步骤已经让我们在本地搭建好了博客的框架，那么我们如何让自己的博客出现在网上呢？关键来了，首先我们先打开hexo文件夹下的网站配置文件，即&lt;strong&gt;_config.yml&lt;/strong&gt;文件，打开方式新手推荐使用&lt;a href=&quot;http://pan.baidu.com/s/1sj02k2L&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sublime text3&lt;/a&gt;,或者notepad++，如果不会可以花点时间简单的学习一下。一些简单的修改可以参考我的格式，我是按照博主&lt;a href=&quot;http://lovenight.github.io/2015/11/10/Hexo-3-1-1-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;loveNight&lt;/a&gt;的博客修改的，大家也可以参考下。关键是修改本文档的末尾，因为我们是采用git的方式同步到github上，所以文档的最后应该如下所示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;deploy: 
+  type: git
+  repository: ##存放你博客的库的网址
+  branch: master
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;之后在git上（git bash的路径是你电脑存放博客的文档）使用命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git g
+git d
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样就将你本地的博客框架同步到github上了，这能不能输入一个网址看到我的博客了呢？很抱歉，还差最后一步，那就是到github的仓库中更改你的网址，如下图所示：&lt;br&gt;&lt;img src=&quot;http://o6wayjgzn.bkt.clouddn.com/img%2Fhexo%E6%90%AD%E5%BB%BAblog%2Fhexo%E6%90%AD%E5%BB%BAblog3.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;耐心的等待几分钟，到时候就可以输入你之前写好的网址进行查看啦！需要注意的是，由于网站是托管于github上的，所以命名格式一定是&lt;strong&gt;#你的库的名字.github.io&lt;/strong&gt;。这样，最初是的博客框架就搭好了，当然之后需要很多修改和美化的地方，这就需要自己多耐心的折腾，不过网上资料还是比较多，相信大家耐心一点都可以解决（碰到问题首先要自己去试着解决，有时候自己一个好简单的问题都没搞清楚就去请教别人好傻逼的，我是过来人，哭哭！！）。&lt;/p&gt;
+&lt;h3 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h3&gt;&lt;p&gt;由于自己水平有限，这篇博客写的太水，而且自己也还在学习当中，特意贴出一些写的比较好而且人非常nice的大神的hexo博客搭建指南，希望可以提供大家参考，当然这篇博客也还有待改进，自己最近有点忙，思路也有点乱，这篇博客以后自己还会改进，并且等到时候有时间或者自己进阶以后会再写一篇关于hexo搭建博客遇到的问题及解决方案的，未完待续！&lt;/p&gt;
+&lt;h3 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://lovenight.github.io/2015/11/10/Hexo-3-1-1-%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo 3.1.1 静态博客搭建指南&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://wenghaobin.tk/2016/05/01/Hexo%20My%20Blog/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo my blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
     
     <summary type="html">
     
