@@ -3,8 +3,30 @@
 
     
   <url>
+    <loc>http://wanano.github.io/2016/06/26/%E5%9F%BA%E4%BA%8E%E5%BE%AE%E8%BD%AFspeach-SDK%E7%9A%84%E8%AF%AD%E9%9F%B3%E6%9C%97%E8%AF%BB%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8F%8A%E8%AF%AD%E9%9F%B3%E6%8E%A7%E5%88%B6/</loc>
+    <lastmod>2016-06-26T07:52:48.658Z</lastmod>
+    <data>
+        <display>
+        <title>基于微软speach SDK的语音朗读器的实现及语音控制</title>
+        <pubTime>2016-06-26T06:46:19.000Z</pubTime>
+        
+        <tag>语音识别 </tag>
+         
+        <tag>语音控制 </tag>
+         
+         
+           
+             
+              <breadCrumb title="学习" url="http://wanano.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wanano.github.io/2016/05/12/hexo3-2-0%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%8C%87%E5%8D%97%E4%B8%8E%E5%BF%83%E5%BE%97/</loc>
-    <lastmod>2016-05-23T13:03:18.222Z</lastmod>
+    <lastmod>2016-06-26T06:38:56.839Z</lastmod>
     <data>
         <display>
         <title>hexo3.2.0搭建静态博客指南与心得</title>
